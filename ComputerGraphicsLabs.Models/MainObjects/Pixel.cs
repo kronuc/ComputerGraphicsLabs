@@ -1,9 +1,12 @@
-﻿using System.Drawing;
-
-namespace ComputerGraphicsLabs.Models.MainObjects
+﻿namespace ComputerGraphicsLabs.Models.MainObjects
 {
     public class Pixel
     {
-        public Color Color { get; set; } 
+        public Collors Color { get; private set; }
+
+        public Pixel(Collors color)
+        {
+            Color = color;
+        }
     }
 }

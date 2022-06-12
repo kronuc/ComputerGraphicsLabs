@@ -1,6 +1,6 @@
 ﻿namespace ComputerGraphicsLabs.ConsoleUI
 {
-    public interface IMainPage
+    public interface IApplicationStarter
     {
         public void Start()
     }
