@@ -1,4 +1,6 @@
 ﻿using ComputerGraphicsLabs.Models.ComputeObjects;
+using ComputerGraphicsLabs.Models.MainObjects;
+using ComputerGraphicsLabs.Models.MainObjects.InfoObjects;
 
 namespace ComputerGraphicsLabs.Models.VisibleObjects
 {
@@ -8,9 +10,10 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
         public Point BPoint { get; set; }
         public Point CPoint { get; set; }
 
-        public override Point Getintersection(Ray ray)
+        public override IntersecitonInfo Getintersection(Ray ray, Light light)
         {
             throw new System.NotImplementedException();
         }
+
     }
 }

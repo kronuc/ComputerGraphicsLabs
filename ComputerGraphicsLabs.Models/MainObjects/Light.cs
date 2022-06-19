@@ -11,9 +11,12 @@ namespace ComputerGraphicsLabs.Models.MainObjects
             Coordinates = coordinates;
         }
 
-        public Vector GetLightVectorToPoing(Point point)
+        public Vector GetvectorFromPointToLight(Point point)
         {
-            return null;
+            return new Vector(new Coordinates(
+                Coordinates.XCoorinate - point.Coordinates.XCoorinate,
+                Coordinates.YCoorinate - point.Coordinates.YCoorinate,
+                Coordinates.ZCoorinate - point.Coordinates.ZCoorinate));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ComputerGraphicsLabs.Models.VisibleObjects;
+﻿using ComputerGraphicsLabs.Models.ComputeObjects;
+using ComputerGraphicsLabs.Models.VisibleObjects;
 using ComputerGraphicsLabs.Services;
 using ComputerGraphicsLabs.Services.Abstracion;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +17,7 @@ namespace ComputerGraphicsLabs
             var vs = serviceProvider.GetService<IVisualisationService>();
 
 
-            vs.AddVisibleObjects(new Tringle());
+            vs.AddVisibleObjects(new Sphere(new Coordinates(500,0, 0), 250));
             vs.Visualise();
         }
     }
