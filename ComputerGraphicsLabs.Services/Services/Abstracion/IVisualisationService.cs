@@ -1,10 +1,12 @@
-﻿using ComputerGraphicsLabs.Models.VisibleObjects;
+﻿using ComputerGraphicsLabs.Models.MainObjects;
+using ComputerGraphicsLabs.Models.VisibleObjects;
+using System.Collections.Generic;
 
 namespace ComputerGraphicsLabs.Services.Abstracion
 {
     public interface IVisualisationService
     {
-        public void AddVisibleObjects(VisibleObject visibleObject);
-        public void Visualise();
+        public void AddVisibleObjects(List<VisibleObject> visibleObject);
+        public Picture GetPicture();
     }
 }

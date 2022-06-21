@@ -10,7 +10,7 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
         public Point BPoint { get; set; }
         public Point CPoint { get; set; }
 
-        public override IntersecitonInfo Getintersection(Ray ray, Light light)
+        public override IntersecitonInfo Getintersection(Ray ray)
         {
             throw new System.NotImplementedException();
         }

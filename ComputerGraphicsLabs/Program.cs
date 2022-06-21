@@ -2,6 +2,7 @@
 using ComputerGraphicsLabs.Models.VisibleObjects;
 using ComputerGraphicsLabs.Services;
 using ComputerGraphicsLabs.Services.Abstracion;
+using ComputerGraphicsLabs.Services.Services.Abstracion;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ComputerGraphicsLabs
@@ -14,11 +15,14 @@ namespace ComputerGraphicsLabs
             serviceCollection.AddVisualisationServices();
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
+
             var vs = serviceProvider.GetService<IVisualisationService>();
-
-
-            vs.AddVisibleObjects(new Sphere(new Coordinates(500,0, 0), 250));
-            vs.Visualise();
+            var outputService = serviceProvider.GetService<IOutputService>();
+            var inputService = serviceProvider.GetService<IInputService>();
+            var visibleObjects = inputService.GetVisibleObjects();
+            vs.AddVisibleObjects(visibleObjects);
+            var picture = vs.GetPicture();
+            outputService.DrawPicture(picture);
         }
     }
 }

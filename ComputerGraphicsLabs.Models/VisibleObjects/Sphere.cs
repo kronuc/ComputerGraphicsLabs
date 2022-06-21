@@ -1,6 +1,7 @@
 ﻿using ComputerGraphicsLabs.Models.ComputeObjects;
 using ComputerGraphicsLabs.Models.MainObjects;
 using ComputerGraphicsLabs.Models.MainObjects.InfoObjects;
+using System;
 
 namespace ComputerGraphicsLabs.Models.VisibleObjects
 {
@@ -15,10 +16,11 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
             Radius = radius;
         }
 
-        public override IntersecitonInfo Getintersection(Ray ray, Light light)
+        public override IntersecitonInfo Getintersection(Ray ray)
         {
             throw new System.NotImplementedException();
         }
-
     }
+
+    
 }

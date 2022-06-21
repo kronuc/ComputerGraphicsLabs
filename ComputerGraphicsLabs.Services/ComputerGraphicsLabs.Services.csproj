@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CL.Visualisation\ComputerGraphicsLabs.Visualisation.csproj" />
     <ProjectReference Include="..\ComputerGraphicsLabs.Models\ComputerGraphicsLabs.Models.csproj" />
   </ItemGroup>
 

@@ -2,33 +2,31 @@
 using ComputerGraphicsLabs.Models.MainObjects;
 using ComputerGraphicsLabs.Models.VisibleObjects;
 using ComputerGraphicsLabs.Services.Abstracion;
-using ComputerGraphicsLabs.Visualisation;
 using System;
+using System.Collections.Generic;
 
 namespace ComputerGraphicsLabs.Services.Services.Implenetation
 {
     public class VisualisationService : IVisualisationService
     {
         private Picture _picture;
-        private IPainter _painter;
 
         public event EventHandler me;
 
-        public VisualisationService(IPainter painter)
+        public VisualisationService()
         {
-            _painter = painter;
             Initialise();
         }
 
-        public void AddVisibleObjects(VisibleObject visibleObject)
+        public void AddVisibleObjects(List<VisibleObject> visibleObject)
         {
-            _picture.VisibleObject.Add(visibleObject);
+            _picture.VisibleObject.AddRange(visibleObject);
         }
 
-        public void Visualise()
+
+        public Picture GetPicture()
         {
-            var pixels  = _picture.GetPicture();
-            _painter.Paint(pixels);
+            return _picture;
         }
 
         private void Initialise()
@@ -47,5 +45,6 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation
 
             _picture = new Picture(viewer, light);
         }
+
     }
 }

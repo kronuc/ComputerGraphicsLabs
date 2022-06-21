@@ -1,4 +1,5 @@
-﻿using ComputerGraphicsLabs.Models.VisibleObjects;
+﻿using ComputerGraphicsLabs.Models.InfoObjects.MainObjects;
+using ComputerGraphicsLabs.Models.VisibleObjects;
 using System.Collections.Generic;
 
 namespace ComputerGraphicsLabs.Models.MainObjects
@@ -24,7 +25,7 @@ namespace ComputerGraphicsLabs.Models.MainObjects
                 for (int j = 0; j < Viewer.PixelInWidth; j++)
                 {
                     Viewer.GetRayForPixel(i, j);
-                    pixels[i, j] = new Pixel((Collors)(j % 3));
+                    pixels[i, j] = new Pixel(0,0,0);
                 }
             }
 

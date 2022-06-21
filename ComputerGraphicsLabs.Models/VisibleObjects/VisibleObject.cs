@@ -6,6 +6,6 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
 {
     public abstract class VisibleObject
     {
-        public abstract IntersecitonInfo Getintersection(Ray ray, Light light);
+        public abstract IntersecitonInfo Getintersection(Ray ray);
     }
 }
