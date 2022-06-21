@@ -16,11 +16,27 @@ namespace ComputerGraphicsLabs.Models.ComputeObjects
             return Math.Pow(Math.Pow(Coordinates.XCoorinate,2) * Math.Pow(Coordinates.YCoorinate,2) * Math.Pow(Coordinates.ZCoorinate,2), 0.5);
         }
 
+        public static double Dot(Vector v, Vector u) 
+        {
+            var result = 0d;
+            result += v.Coordinates.XCoorinate * u.Coordinates.XCoorinate;
+            result += v.Coordinates.YCoorinate * u.Coordinates.YCoorinate;
+            result += v.Coordinates.ZCoorinate * u.Coordinates.ZCoorinate;
+            return result;
+        }
+            
         public static Vector operator -(Vector v) => new Vector(
             new Coordinates(
                 -v.Coordinates.XCoorinate, 
                 -v.Coordinates.YCoorinate, 
                 -v.Coordinates.ZCoorinate));
+
+
+        public static Vector operator *(Vector v, double d) => new Vector(
+            new Coordinates(
+                d * v.Coordinates.XCoorinate,
+                d * v.Coordinates.YCoorinate,
+                d * v.Coordinates.ZCoorinate));
 
         public static Vector operator +(Vector v, Vector u) => new Vector(
             new Coordinates(
