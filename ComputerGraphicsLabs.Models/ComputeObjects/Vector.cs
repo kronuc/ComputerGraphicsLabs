@@ -13,7 +13,7 @@ namespace ComputerGraphicsLabs.Models.ComputeObjects
 
         public double GetModule()
         {
-            return Math.Pow(Math.Pow(Coordinates.XCoorinate,2) * Math.Pow(Coordinates.YCoorinate,2) * Math.Pow(Coordinates.ZCoorinate,2), 0.5);
+            return Math.Pow(Math.Pow(Coordinates.XCoorinate,2) + Math.Pow(Coordinates.YCoorinate,2) + Math.Pow(Coordinates.ZCoorinate,2), 0.5);
         }
 
         public static double Dot(Vector v, Vector u) 

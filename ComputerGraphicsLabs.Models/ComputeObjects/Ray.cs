@@ -10,10 +10,5 @@
             Origin = origin;
             Direction = direcitoin;
         }
-
-        public Vector Cast(double t)
-        {
-            return Origin + Direction * t;
-        }
     }
 }

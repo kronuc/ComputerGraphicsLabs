@@ -1,5 +1,4 @@
 ﻿using ComputerGraphicsLabs.Models.ComputeObjects;
-using ComputerGraphicsLabs.Models.MainObjects;
 using ComputerGraphicsLabs.Models.MainObjects.InfoObjects;
 using System;
 
@@ -26,10 +25,10 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
             var discriminant = b * b - 4 * a * c;
 
             if (discriminant < 0)
-                return new IntersecitonInfo(null, -1);
+                return new IntersecitonInfo(null, -1, null);
 
             var sqrtD = MathF.Sqrt((float)discriminant);
-            var root = (-b - sqrtD) / (2 * a);
+            var root = (b - sqrtD) / (2 * a);
 
             var vectorToIntersecitonPoint = ray.Direction * root;
             
@@ -40,8 +39,15 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
                 );
 
             var distanceToIntersection = vectorToIntersecitonPoint.GetModule();
-            
-            return new IntersecitonInfo(pointOfInterseciton, distanceToIntersection);
+            var normal = new Vector(new Coordinates(pointOfInterseciton.XCoorinate - Center.XCoorinate,
+                pointOfInterseciton.YCoorinate - Center.YCoorinate,
+                pointOfInterseciton.ZCoorinate - Center.ZCoorinate));
+            var divider = normal.GetModule();
+            var normalWithLenghtOne = new Vector(new Coordinates(normal.Coordinates.XCoorinate / divider,
+                normal.Coordinates.YCoorinate / divider,
+                normal.Coordinates.ZCoorinate / divider));
+            var lenght = normalWithLenghtOne.GetModule();
+            return new IntersecitonInfo(pointOfInterseciton, distanceToIntersection, normalWithLenghtOne);
         }
     }
 

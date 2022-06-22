@@ -2,16 +2,13 @@
 using ComputerGraphicsLabs.Models.MainObjects;
 using ComputerGraphicsLabs.Models.VisibleObjects;
 using ComputerGraphicsLabs.Services.Abstracion;
-using System;
 using System.Collections.Generic;
 
 namespace ComputerGraphicsLabs.Services.Services.Implenetation
 {
     public class VisualisationService : IVisualisationService
     {
-        private Picture _picture;
-
-        public event EventHandler me;
+        private Scene _scene;
 
         public VisualisationService()
         {
@@ -20,13 +17,13 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation
 
         public void AddVisibleObjects(List<VisibleObject> visibleObject)
         {
-            _picture.VisibleObject.AddRange(visibleObject);
+            _scene.VisibleObject.AddRange(visibleObject);
         }
 
 
         public Picture GetPicture()
         {
-            return _picture;
+            return _scene.GetPicture();
         }
 
         private void Initialise()
@@ -35,15 +32,14 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation
                 height: 100,
                 width: 100,
                 pixelInHeight: 200,
-                pixelinWidth: 100,
+                pixelinWidth: 200,
                 new Coordinates(0,0,0),
                 new Vector(new Coordinates(1, 0, 0)),
                 200
                 );
 
-            var light = new Light(new Coordinates(210, 200, 100));
-
-            _picture = new Picture(viewer, light);
+            var light = new Light(new Coordinates(200, 1000, 100));
+            _scene = new Scene(viewer, light);
         }
 
     }

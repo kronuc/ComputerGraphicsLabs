@@ -23,8 +23,8 @@
 
         public static Vector operator -(Point v, Point u) => new Vector(
             new Coordinates(
-                v.Coordinates.XCoorinate + u.Coordinates.XCoorinate,
-                v.Coordinates.XCoorinate + u.Coordinates.YCoorinate,
-                v.Coordinates.XCoorinate + u.Coordinates.ZCoorinate));
+                v.Coordinates.XCoorinate - u.Coordinates.XCoorinate,
+                v.Coordinates.YCoorinate - u.Coordinates.YCoorinate,
+                v.Coordinates.ZCoorinate - u.Coordinates.ZCoorinate));
     }
 }
