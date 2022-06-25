@@ -29,16 +29,16 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation
         private void Initialise()
         {
             var viewer = new Viewer(
-                height: 100,
-                width: 100,
-                pixelInHeight: 200,
-                pixelinWidth: 200,
-                new Coordinates(0,0,0),
+                height: 1000,
+                width: 500,
+                pixelInHeight: 100,
+                pixelinWidth: 100,
+                new Coordinates(0, 0, 0),
                 new Vector(new Coordinates(1, 0, 0)),
-                200
+                500
                 );
 
-            var light = new Light(new Coordinates(200, 1000, 100));
+            var light = new Light(new Point(new Coordinates(600, -100, 300)));
             _scene = new Scene(viewer, light);
         }
 

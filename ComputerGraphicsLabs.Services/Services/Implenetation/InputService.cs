@@ -11,7 +11,8 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation
         {
             return new List<VisibleObject>()
             {
-                new Sphere(new Coordinates(1300, 0, 0), 200)
+                new Sphere(new Point(new Coordinates(1400, 0, 0)), 300),
+                new Tringle(new Point(new Coordinates(1000, -200, 200)), new Point(new Coordinates(1400, 300, -100)), new Point(new Coordinates(1400, -300, -100)))
             };
         }
     }

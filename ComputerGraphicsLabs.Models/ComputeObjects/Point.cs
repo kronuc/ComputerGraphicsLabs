@@ -8,23 +8,29 @@
         {
             Coordinates = coordinates;
         }
-        public static Point operator -(Point p) => new Point(
-            new Coordinates(
-                -p.Coordinates.XCoorinate,
-                -p.Coordinates.YCoorinate,
-                -p.Coordinates.ZCoorinate));
+        public static Point operator -(Point p)
+        {
+            var pCoord = p.Coordinates;
+            var x = - pCoord.XCoorinate;
+            var y = - pCoord.YCoorinate;
+            var z = - pCoord.ZCoorinate;
+            var resultCoord = new Coordinates(x, y, z);
+            var resutl = new Point(resultCoord);
+            return resutl;
+        }
 
-        public static Vector operator +(Point v, Point u) => new Vector(
-            new Coordinates(
-                v.Coordinates.XCoorinate + u.Coordinates.XCoorinate, 
-                v.Coordinates.XCoorinate + u.Coordinates.YCoorinate, 
-                v.Coordinates.XCoorinate + u.Coordinates.ZCoorinate));
+        public static Vector operator +(Point v, Point u)
+        {
+            var vCoord = v.Coordinates;
+            var uCoord = u.Coordinates;
+            var x = vCoord.XCoorinate + uCoord.XCoorinate;
+            var y = vCoord.YCoorinate + uCoord.YCoorinate;
+            var z = vCoord.ZCoorinate + uCoord.ZCoorinate;
+            var resultCoordinates = new Coordinates(x, y, z);
+            var result = new Vector(resultCoordinates);
+            return result;
+        }
 
-
-        public static Vector operator -(Point v, Point u) => new Vector(
-            new Coordinates(
-                v.Coordinates.XCoorinate - u.Coordinates.XCoorinate,
-                v.Coordinates.YCoorinate - u.Coordinates.YCoorinate,
-                v.Coordinates.ZCoorinate - u.Coordinates.ZCoorinate));
+        public static Vector operator -(Point v, Point u) => v + (-u);
     }
 }

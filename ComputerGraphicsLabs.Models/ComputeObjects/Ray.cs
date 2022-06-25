@@ -2,10 +2,10 @@
 {
     public class Ray
     {
-        public Coordinates Origin { get; private set; }
+        public Point Origin { get; private set; }
         public Vector Direction { get; private set; }
 
-        public Ray(Coordinates origin, Vector direcitoin)
+        public Ray(Point origin, Vector direcitoin)
         {
             Origin = origin;
             Direction = direcitoin;

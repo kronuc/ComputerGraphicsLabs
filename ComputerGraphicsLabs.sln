@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputerGraphicsLabs.Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputerGraphicsLabs.Models", "ComputerGraphicsLabs.Models\ComputerGraphicsLabs.Models.csproj", "{46F53C45-3837-425C-AD6B-C1980B58C395}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B31AF3F8-B284-428D-89DB-4DC912ED239B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerGraphicsLabs.Models.Tests", "Tests\ComputerGraphicsLabs.Models.Tests\ComputerGraphicsLabs.Models.Tests.csproj", "{362264BC-0B77-4FC8-8C41-FE5D7A268D82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +31,16 @@ Global
 		{46F53C45-3837-425C-AD6B-C1980B58C395}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46F53C45-3837-425C-AD6B-C1980B58C395}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46F53C45-3837-425C-AD6B-C1980B58C395}.Release|Any CPU.Build.0 = Release|Any CPU
+		{362264BC-0B77-4FC8-8C41-FE5D7A268D82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{362264BC-0B77-4FC8-8C41-FE5D7A268D82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{362264BC-0B77-4FC8-8C41-FE5D7A268D82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{362264BC-0B77-4FC8-8C41-FE5D7A268D82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{362264BC-0B77-4FC8-8C41-FE5D7A268D82} = {B31AF3F8-B284-428D-89DB-4DC912ED239B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {01935BDD-4234-4C49-B6B0-24720C913816}

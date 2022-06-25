@@ -38,45 +38,38 @@ namespace ComputerGraphicsLabs.Models.MainObjects
 
         public Ray GetRayForPixel(int xCoordinate, int yCoordinate) 
         {
-            xCoordinate %= PixelInWidth;
-            yCoordinate %= PixelInHeight;
-            var height = (-(PixelInHeight / 2) + xCoordinate) * (Height / PixelInHeight) + (Height / (2 * PixelInHeight));
-            var width = (-(PixelInWidth / 2) + yCoordinate) * (Width / PixelInWidth) + (Width / (2 * PixelInWidth));
+            xCoordinate %= PixelInHeight;
+            yCoordinate %= PixelInWidth;
+            var height = ((PixelInHeight / 2) - xCoordinate) * (Height / PixelInHeight) - (Height / (2 * PixelInHeight));
             var hMult = height / _direcionOfTop.GetModule();
-            var up = new Vector(new Coordinates(_direcionOfTop.Coordinates.XCoorinate * hMult,
-                _direcionOfTop.Coordinates.YCoorinate * hMult,
-                _direcionOfTop.Coordinates.ZCoorinate * hMult));
-
+            var up = _direcionOfTop * hMult;
             
-            var down1 = new Vector(new Coordinates(0,
+            var sideDireciton = new Vector(new Coordinates(0,
                 -_direcionOfTop.Coordinates.ZCoorinate,
                 -_direcionOfTop.Coordinates.YCoorinate));
-
-            var wMult = width / down1.GetModule();
-            var down = new Vector(new Coordinates(0,
+            var width = ((PixelInWidth / 2) - yCoordinate) * (Width / PixelInWidth) - (Width / (2 * PixelInWidth));
+            var wMult = width / sideDireciton.GetModule();
+            var side = new Vector(new Coordinates(0,
                 -_direcionOfTop.Coordinates.ZCoorinate * wMult,
                 -_direcionOfTop.Coordinates.YCoorinate * wMult));
 
-            var resutlV = new Vector(new Coordinates(up.Coordinates.XCoorinate + down.Coordinates.XCoorinate,
-                up.Coordinates.YCoorinate + down.Coordinates.YCoorinate,
-                up.Coordinates.ZCoorinate + down.Coordinates.ZCoorinate));
+            var resutlV = up + side;
 
             var dwMult = DistanseToViewMatrix / ViewDirection.GetModule();
-            var newDW = new Vector(new Coordinates(ViewDirection.Coordinates.XCoorinate * dwMult,
-                ViewDirection.Coordinates.YCoorinate * dwMult,
-                ViewDirection.Coordinates.ZCoorinate * dwMult));
+            var newDW = ViewDirection * dwMult;
 
             var centerOfMatrix = new Coordinates(newDW.Coordinates.XCoorinate + Coordinates.XCoorinate,
                 newDW.Coordinates.YCoorinate + Coordinates.YCoorinate,
                 newDW.Coordinates.ZCoorinate + Coordinates.ZCoorinate);
 
-            var pointOmMatrix = new Coordinates(resutlV.Coordinates.XCoorinate + centerOfMatrix.XCoorinate,
+            var pointOmMatrix = new Point(new Coordinates(resutlV.Coordinates.XCoorinate + centerOfMatrix.XCoorinate,
                 resutlV.Coordinates.YCoorinate + centerOfMatrix.YCoorinate,
-                resutlV.Coordinates.ZCoorinate + centerOfMatrix.ZCoorinate);
+                resutlV.Coordinates.ZCoorinate + centerOfMatrix.ZCoorinate));
+            
 
-            var resultRayDirection = CreateVectorByTwoPoints(Coordinates, pointOmMatrix);
+            var resultRayDirection = Vector.CreateVectorByTwoPoints(new Point(Coordinates), pointOmMatrix);
 
-            var resutl = new Ray(centerOfMatrix, resultRayDirection);
+            var resutl = new Ray(new Point(centerOfMatrix), resultRayDirection);
             return resutl;
         }
 
@@ -88,20 +81,18 @@ namespace ComputerGraphicsLabs.Models.MainObjects
                 return;
             }
 
+            if(ViewDirection.Coordinates.XCoorinate == 0)
+            {
+                _direcionOfTop = new Vector(new Coordinates(1, 0, 0));
+                return;
+            }
+
             var x = (Math.Pow(ViewDirection.Coordinates.YCoorinate, 2) 
                 + Math.Pow(ViewDirection.Coordinates.ZCoorinate, 2)) 
                 / ViewDirection.Coordinates.XCoorinate;
             var y = -ViewDirection.Coordinates.YCoorinate;
             var z = -ViewDirection.Coordinates.ZCoorinate;
-            _direcionOfTop = new Vector(new Coordinates(x, y, z));
-        }
-
-        private Vector CreateVectorByTwoPoints(Coordinates start, Coordinates end)
-        {
-            var x = end.XCoorinate - start.XCoorinate;
-            var y = end.YCoorinate - start.YCoorinate;
-            var z = end.ZCoorinate - start.ZCoorinate;
-            return new Vector(new Coordinates(x, y, z));
+            _direcionOfTop = - new Vector(new Coordinates(x, y, z));
         }
     }
 }

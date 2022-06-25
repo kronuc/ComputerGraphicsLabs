@@ -1,8 +1,8 @@
-﻿using ComputerGraphicsLabs.Models.ComputeObjects;
-using ComputerGraphicsLabs.Models.InfoObjects.MainObjects;
+﻿using ComputerGraphicsLabs.Models.InfoObjects.MainObjects;
 using ComputerGraphicsLabs.Models.MainObjects.InfoObjects;
 using ComputerGraphicsLabs.Models.VisibleObjects;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ComputerGraphicsLabs.Models.MainObjects
 {
@@ -23,52 +23,29 @@ namespace ComputerGraphicsLabs.Models.MainObjects
         {
             var picture = new Picture(Viewer.PixelInHeight, Viewer.PixelInWidth);
             var pixels = picture.Pixels;
-            var rows = pixels.GetUpperBound(0) + 1;
-            for (int i = 0; i < rows; i++)
-            {
-                for (int j = 0; j < pixels.Length / rows; j++)
-                {
-                    var ray = Viewer.GetRayForPixel(j, i);
-                    var isFirst = true;
-                    var intersection = new IntersecitonInfo(null, -1, null);
-                    foreach(var visibleObject in VisibleObject)
-                    {
-                        var newIntersection = visibleObject.Getintersection(ray);
-                        if(isFirst)
-                        {
-                            intersection = newIntersection;
-                            isFirst = false;
-                        }
-                        if(intersection.CoordinatesOfIntersection == null || newIntersection.DistanceToInterseciton <= intersection.DistanceToInterseciton)
-                        {
-                            intersection = newIntersection;
-                        }
-                    }
 
-                    pixels[i, j] = CreatePixelFromIntersection(intersection);
-                }
+            var rows = pixels.GetUpperBound(0) + 1;
+            var colums = pixels.Length / rows;
+
+            for (int i = 0; i < pixels.Length; i++)
+            {
+                var x = i / colums;
+                var y = i % colums;
+                var ray = Viewer.GetRayForPixel(x, y);
+
+                var intersection = VisibleObject
+                    .Select(visibleObject => visibleObject.Getintersection(ray))
+                    .Where(intersection => intersection.HasIntersecion)
+                    .OrderBy(intersection => intersection.DistanceToInterseciton)
+                    .FirstOrDefault();
+
+                if (intersection == default) intersection = new IntersecitonInfo(null, -1, null);
+
+                pixels[x, y] = Pixel.CreatePixelFromIntersection(intersection, Light);
             }
             
             return picture;
         }
 
-        private Pixel CreatePixelFromIntersection(IntersecitonInfo interseciton)
-        {
-            var result = new Pixel(-1, 0, 0);
-            if (!interseciton.HasIntersecion) return result;
-            var normal = interseciton.Normal;
-            var fromPointToLight = CreateVectorByTwoPoints(interseciton.CoordinatesOfIntersection, Light.Coordinates);
-            var scalarMultiply = Vector.Dot(fromPointToLight, normal);
-            result = new Pixel(interseciton.DistanceToInterseciton, fromPointToLight.GetModule(), scalarMultiply/fromPointToLight.GetModule());
-            return result;
-        }
-
-        private Vector CreateVectorByTwoPoints(Coordinates start, Coordinates end)
-        {
-            var coordinates = new Coordinates(end.XCoorinate - start.XCoorinate,
-                end.YCoorinate - start.YCoorinate,
-                end.ZCoorinate - start.ZCoorinate);
-            return new Vector(coordinates);
-        }
     }
 }
