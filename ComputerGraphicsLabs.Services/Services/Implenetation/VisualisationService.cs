@@ -29,13 +29,13 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation
         private void Initialise()
         {
             var viewer = new Viewer(
-                height: 500,
-                width: 500,
-                pixelInHeight: 500,
-                pixelinWidth: 500,
-                new Coordinates(0, 0, 0),
-                new Vector(new Coordinates(1, 0, 0)),
-                500
+                height: 5,
+                width: 5,
+                pixelInHeight: 400,
+                pixelinWidth: 400,
+                new Coordinates(15, 0, 0),
+                new Vector(new Coordinates(-1, 0, 0)),
+                5
                 );
 
             var light = new Light(new Point(new Coordinates(600, -100, 300)));

@@ -12,11 +12,26 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
         public Point BPoint { get; set; }
         public Point CPoint { get; set; }
 
+        public Vector NormalA { get; set; }
+        public Vector NormalB { get; set; }
+        public Vector NormalC { get; set; }
+
         public Tringle(Point aPoint, Point bPoint, Point cPoint)
         {
             APoint = aPoint;
             BPoint = bPoint;
             CPoint = cPoint;
+        }
+
+
+        public Tringle(Point aPoint, Point bPoint, Point cPoint, Vector normalA, Vector normalB, Vector normalC)
+        {
+            APoint = aPoint;
+            BPoint = bPoint;
+            CPoint = cPoint;
+            NormalA = normalA;
+            NormalB = normalB;
+            NormalC = normalC;
         }
 
         public override IntersecitonInfo Getintersection(Ray ray)

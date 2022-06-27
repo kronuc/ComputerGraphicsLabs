@@ -1,6 +1,7 @@
 ﻿using ComputerGraphicsLabs.Models.InfoObjects.MainObjects;
 using ComputerGraphicsLabs.Models.MainObjects.InfoObjects;
 using ComputerGraphicsLabs.Models.VisibleObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -34,13 +35,19 @@ namespace ComputerGraphicsLabs.Models.MainObjects
                 var ray = Viewer.GetRayForPixel(x, y);
 
                 var intersection = VisibleObject
+                    .AsParallel()
                     .Select(visibleObject => visibleObject.Getintersection(ray))
                     .Where(intersection => intersection.HasIntersecion)
                     .OrderBy(intersection => intersection.DistanceToInterseciton)
                     .FirstOrDefault();
 
-                if (intersection == default) intersection = new IntersecitonInfo(null, -1, null);
+                if(i % 1000 == 0)
+                {
+                    Console.WriteLine(i.ToString() + "\\" + pixels.Length.ToString());
+                }
 
+                if (intersection == default) intersection = new IntersecitonInfo(null, -1, null);
+                
                 pixels[x, y] = Pixel.CreatePixelFromIntersection(intersection, Light);
             }
             
