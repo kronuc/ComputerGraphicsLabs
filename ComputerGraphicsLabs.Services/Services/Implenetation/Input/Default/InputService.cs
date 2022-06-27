@@ -3,7 +3,7 @@ using ComputerGraphicsLabs.Models.VisibleObjects;
 using ComputerGraphicsLabs.Services.Services.Abstracion;
 using System.Collections.Generic;
 
-namespace ComputerGraphicsLabs.Services.Services.Implenetation
+namespace ComputerGraphicsLabs.Services.Services.Implenetation.Input.Default
 {
     public class InputService : IInputService
     {

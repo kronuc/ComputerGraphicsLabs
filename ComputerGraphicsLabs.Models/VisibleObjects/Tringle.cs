@@ -36,7 +36,7 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
             if (!IsPointBelongToTringle(pointOfInterseciton)) return GetEmptyIntersectionInfo();
 
             var distanceToIntersection = vectorToIntersecitonPoint.GetModule();
-            var normalWithLenghtOne = GetNormalWithLenghtOne(normal);
+            var normalWithLenghtOne = GetVectorWithLenghtOne(normal);
 
             return new IntersecitonInfo(pointOfInterseciton, distanceToIntersection, normalWithLenghtOne);
         }

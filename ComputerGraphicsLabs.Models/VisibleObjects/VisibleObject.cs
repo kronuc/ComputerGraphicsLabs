@@ -22,10 +22,10 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
             return result;
         }
 
-        protected Vector GetNormalWithLenghtOne(Vector normal)
+        protected Vector GetVectorWithLenghtOne(Vector normal)
         {
             var divider = normal.GetModule();
-            var normalWithLenghtOne = normal * (1 / divider);
+            var normalWithLenghtOne = normal / divider;
             return normalWithLenghtOne;
         }
 

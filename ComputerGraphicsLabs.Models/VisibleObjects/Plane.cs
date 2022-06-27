@@ -32,7 +32,7 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
             var vectorToIntersecitonPoint = GetVectorToInterseciton(root, ray);
             var pointOfInterseciton = GetPointOfInterseciton(vectorToIntersecitonPoint, ray);
             var distanceToIntersection = vectorToIntersecitonPoint.GetModule();
-            var normalWithLenghtOne = GetNormalWithLenghtOne(normal);
+            var normalWithLenghtOne = GetVectorWithLenghtOne(normal);
 
             return new IntersecitonInfo(pointOfInterseciton, distanceToIntersection, normalWithLenghtOne);
         }

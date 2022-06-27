@@ -43,7 +43,7 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
 
             var normal = pointOfInterseciton - Center;
 
-            var normalWithLenghtOne = GetNormalWithLenghtOne(normal);
+            var normalWithLenghtOne = GetVectorWithLenghtOne(normal);
 
             return new IntersecitonInfo(pointOfInterseciton, distanceToIntersection, normalWithLenghtOne);
         }

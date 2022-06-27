@@ -1,6 +1,4 @@
-﻿using ComputerGraphicsLabs.Models.ComputeObjects;
-using ComputerGraphicsLabs.Models.VisibleObjects;
-using ComputerGraphicsLabs.Services;
+﻿using ComputerGraphicsLabs.Services;
 using ComputerGraphicsLabs.Services.Abstracion;
 using ComputerGraphicsLabs.Services.Services.Abstracion;
 using Microsoft.Extensions.DependencyInjection;

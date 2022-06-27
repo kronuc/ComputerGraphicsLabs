@@ -29,10 +29,10 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation
         private void Initialise()
         {
             var viewer = new Viewer(
-                height: 1000,
+                height: 500,
                 width: 500,
-                pixelInHeight: 100,
-                pixelinWidth: 100,
+                pixelInHeight: 500,
+                pixelinWidth: 500,
                 new Coordinates(0, 0, 0),
                 new Vector(new Coordinates(1, 0, 0)),
                 500
