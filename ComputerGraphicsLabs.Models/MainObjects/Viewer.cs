@@ -45,26 +45,26 @@ namespace ComputerGraphicsLabs.Models.MainObjects
             var up = _direcionOfTop * hMult;
             
             var sideDireciton = new Vector(new Coordinates(0,
-                -_direcionOfTop.Coordinates.ZCoorinate,
-                -_direcionOfTop.Coordinates.YCoorinate));
+                -_direcionOfTop.Coordinates.ZCoordinate,
+                -_direcionOfTop.Coordinates.YCoordinate));
             var width = ((PixelInWidth / 2) - yCoordinate) * (Width / PixelInWidth) - (Width / (2 * PixelInWidth));
             var wMult = width / sideDireciton.GetModule();
             var side = new Vector(new Coordinates(0,
-                -_direcionOfTop.Coordinates.ZCoorinate * wMult,
-                -_direcionOfTop.Coordinates.YCoorinate * wMult));
+                -_direcionOfTop.Coordinates.ZCoordinate * wMult,
+                -_direcionOfTop.Coordinates.YCoordinate * wMult));
 
             var resutlV = up + side;
 
             var dwMult = DistanseToViewMatrix / ViewDirection.GetModule();
             var newDW = ViewDirection * dwMult;
 
-            var centerOfMatrix = new Coordinates(newDW.Coordinates.XCoorinate + Coordinates.XCoorinate,
-                newDW.Coordinates.YCoorinate + Coordinates.YCoorinate,
-                newDW.Coordinates.ZCoorinate + Coordinates.ZCoorinate);
+            var centerOfMatrix = new Coordinates(newDW.Coordinates.XCoordinate + Coordinates.XCoordinate,
+                newDW.Coordinates.YCoordinate + Coordinates.YCoordinate,
+                newDW.Coordinates.ZCoordinate + Coordinates.ZCoordinate);
 
-            var pointOmMatrix = new Point(new Coordinates(resutlV.Coordinates.XCoorinate + centerOfMatrix.XCoorinate,
-                resutlV.Coordinates.YCoorinate + centerOfMatrix.YCoorinate,
-                resutlV.Coordinates.ZCoorinate + centerOfMatrix.ZCoorinate));
+            var pointOmMatrix = new Point(new Coordinates(resutlV.Coordinates.XCoordinate + centerOfMatrix.XCoordinate,
+                resutlV.Coordinates.YCoordinate + centerOfMatrix.YCoordinate,
+                resutlV.Coordinates.ZCoordinate + centerOfMatrix.ZCoordinate));
             
 
             var resultRayDirection = Vector.CreateVectorByTwoPoints(new Point(Coordinates), pointOmMatrix);
@@ -75,23 +75,23 @@ namespace ComputerGraphicsLabs.Models.MainObjects
 
         private void CountDirecionOfTop()
         {
-            if(ViewDirection.Coordinates.YCoorinate == 0 && ViewDirection.Coordinates.ZCoorinate == 0)
+            if(ViewDirection.Coordinates.YCoordinate == 0 && ViewDirection.Coordinates.ZCoordinate == 0)
             {
                 _direcionOfTop = new Vector(new Coordinates(0, 0, 1));
                 return;
             }
 
-            if(ViewDirection.Coordinates.XCoorinate == 0)
+            if(ViewDirection.Coordinates.XCoordinate == 0)
             {
                 _direcionOfTop = new Vector(new Coordinates(1, 0, 0));
                 return;
             }
 
-            var x = (Math.Pow(ViewDirection.Coordinates.YCoorinate, 2) 
-                + Math.Pow(ViewDirection.Coordinates.ZCoorinate, 2)) 
-                / ViewDirection.Coordinates.XCoorinate;
-            var y = -ViewDirection.Coordinates.YCoorinate;
-            var z = -ViewDirection.Coordinates.ZCoorinate;
+            var x = (Math.Pow(ViewDirection.Coordinates.YCoordinate, 2) 
+                + Math.Pow(ViewDirection.Coordinates.ZCoordinate, 2)) 
+                / ViewDirection.Coordinates.XCoordinate;
+            var y = -ViewDirection.Coordinates.YCoordinate;
+            var z = -ViewDirection.Coordinates.ZCoordinate;
             _direcionOfTop = - new Vector(new Coordinates(x, y, z));
         }
     }

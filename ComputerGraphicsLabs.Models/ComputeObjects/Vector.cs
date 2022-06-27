@@ -13,9 +13,9 @@ namespace ComputerGraphicsLabs.Models.ComputeObjects
 
         public double GetModule()
         {
-            var xSquere = Math.Pow(Coordinates.XCoorinate, 2);
-            var ySquere = Math.Pow(Coordinates.YCoorinate, 2);
-            var zSquere = Math.Pow(Coordinates.ZCoorinate, 2);
+            var xSquere = Math.Pow(Coordinates.XCoordinate, 2);
+            var ySquere = Math.Pow(Coordinates.YCoordinate, 2);
+            var zSquere = Math.Pow(Coordinates.ZCoordinate, 2);
             var result = Math.Pow(xSquere + ySquere + zSquere, 0.5);
             return result;
         }
@@ -24,9 +24,9 @@ namespace ComputerGraphicsLabs.Models.ComputeObjects
         {
             var startPointCoord = start.Coordinates;
             var endPointCoord = end.Coordinates;
-            var x = endPointCoord.XCoorinate - startPointCoord.XCoorinate;
-            var y = endPointCoord.YCoorinate - startPointCoord.YCoorinate;
-            var z = endPointCoord.ZCoorinate - startPointCoord.ZCoorinate;
+            var x = endPointCoord.XCoordinate - startPointCoord.XCoordinate;
+            var y = endPointCoord.YCoordinate - startPointCoord.YCoordinate;
+            var z = endPointCoord.ZCoordinate - startPointCoord.ZCoordinate;
             var coordinatesOfResult = new Coordinates(x, y, z);
             var result = new Vector(coordinatesOfResult);
             return result;
@@ -36,9 +36,9 @@ namespace ComputerGraphicsLabs.Models.ComputeObjects
         {
             var vCoord = v.Coordinates;
             var uCoord = u.Coordinates;
-            var newX = vCoord.YCoorinate * uCoord.ZCoorinate - vCoord.ZCoorinate * uCoord.YCoorinate;
-            var newY = vCoord.ZCoorinate * uCoord.XCoorinate - vCoord.XCoorinate * uCoord.ZCoorinate;
-            var newZ = vCoord.XCoorinate * uCoord.YCoorinate - vCoord.YCoorinate * uCoord.XCoorinate;
+            var newX = vCoord.YCoordinate * uCoord.ZCoordinate - vCoord.ZCoordinate * uCoord.YCoordinate;
+            var newY = vCoord.ZCoordinate * uCoord.XCoordinate - vCoord.XCoordinate * uCoord.ZCoordinate;
+            var newZ = vCoord.XCoordinate * uCoord.YCoordinate - vCoord.YCoordinate * uCoord.XCoordinate;
             var coordinatesOfResult = new Coordinates(newX, newY, newZ);
             var result = new Vector(coordinatesOfResult);
             return result;
@@ -50,20 +50,30 @@ namespace ComputerGraphicsLabs.Models.ComputeObjects
             var result = 0d;
             var vCoord = v.Coordinates;
             var uCoord = u.Coordinates;
-            result += vCoord.XCoorinate * uCoord.XCoorinate;
-            result += vCoord.YCoorinate * uCoord.YCoorinate;
-            result += vCoord.ZCoorinate * uCoord.ZCoorinate;
+            result += vCoord.XCoordinate * uCoord.XCoordinate;
+            result += vCoord.YCoordinate * uCoord.YCoordinate;
+            result += vCoord.ZCoordinate * uCoord.ZCoordinate;
             return result;
         }
 
+        public static Vector operator *(Vector v, Vector u)
+        {
+            var vCoord = v.Coordinates;
+            var uCoord = u.Coordinates;
+            var x = v.Coordinates.YCoordinate * u.Coordinates.ZCoordinate - v.Coordinates.ZCoordinate * u.Coordinates.YCoordinate;
+            var y = v.Coordinates.ZCoordinate * u.Coordinates.XCoordinate - v.Coordinates.XCoordinate * u.Coordinates.ZCoordinate;
+            var z = v.Coordinates.XCoordinate * u.Coordinates.YCoordinate - v.Coordinates.YCoordinate * u.Coordinates.XCoordinate;
+            var resultCoordinates = new Coordinates(x, y, z);
+            return new Vector(resultCoordinates);
+        }
         public static Vector operator -(Vector v) => v * (-1d);
 
         public static Vector operator *(Vector v, double d)
         {
             var vCoord = v.Coordinates;
-            var x = d * vCoord.XCoorinate;
-            var y = d * vCoord.YCoorinate;
-            var z = d * vCoord.ZCoorinate;
+            var x = d * vCoord.XCoordinate;
+            var y = d * vCoord.YCoordinate;
+            var z = d * vCoord.ZCoordinate;
             var resultCoordinates = new Coordinates(x, y, z);
             var result = new Vector(resultCoordinates);
             return result;
@@ -75,9 +85,9 @@ namespace ComputerGraphicsLabs.Models.ComputeObjects
         {
             var vCoord = v.Coordinates;
             var uCoord = u.Coordinates;
-            var x = vCoord.XCoorinate + uCoord.XCoorinate;
-            var y = vCoord.YCoorinate + uCoord.YCoorinate;
-            var z = vCoord.ZCoorinate + uCoord.ZCoorinate;
+            var x = vCoord.XCoordinate + uCoord.XCoordinate;
+            var y = vCoord.YCoordinate + uCoord.YCoordinate;
+            var z = vCoord.ZCoordinate + uCoord.ZCoordinate;
             var resultCoordinates = new Coordinates(x, y, z);
             var result = new Vector(resultCoordinates);
             return result;
@@ -87,9 +97,9 @@ namespace ComputerGraphicsLabs.Models.ComputeObjects
         {
             var vCoord = v.Coordinates;
             var pCoord = p.Coordinates;
-            var x = vCoord.XCoorinate + pCoord.XCoorinate;
-            var y = vCoord.XCoorinate + pCoord.YCoorinate;
-            var z = vCoord.XCoorinate + pCoord.ZCoorinate;
+            var x = vCoord.XCoordinate + pCoord.XCoordinate;
+            var y = vCoord.XCoordinate + pCoord.YCoordinate;
+            var z = vCoord.XCoordinate + pCoord.ZCoordinate;
             var resultCoordinates = new Coordinates(x, y, z);
             var result = new Vector(resultCoordinates);
             return result;

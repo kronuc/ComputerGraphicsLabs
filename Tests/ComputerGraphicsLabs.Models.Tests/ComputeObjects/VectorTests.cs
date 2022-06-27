@@ -15,9 +15,9 @@ namespace ComputerGraphicsLabs.Models.Tests.ComputeObjects
         {
             // arrange
             var vector = AutoFaker.Generate<Vector>();
-            var xSquere = Math.Pow(vector.Coordinates.XCoorinate, 2);
-            var ySquere = Math.Pow(vector.Coordinates.YCoorinate, 2);
-            var zSquere = Math.Pow(vector.Coordinates.ZCoorinate, 2);
+            var xSquere = Math.Pow(vector.Coordinates.XCoordinate, 2);
+            var ySquere = Math.Pow(vector.Coordinates.YCoordinate, 2);
+            var zSquere = Math.Pow(vector.Coordinates.ZCoordinate, 2);
             var expectedResult = Math.Pow(xSquere + ySquere + zSquere, 0.5);
 
             // act
@@ -35,9 +35,9 @@ namespace ComputerGraphicsLabs.Models.Tests.ComputeObjects
             var end = AutoFaker.Generate<Point>();
             var startPointCoord = start.Coordinates;
             var endPointCoord = end.Coordinates;
-            var x = endPointCoord.XCoorinate - startPointCoord.XCoorinate;
-            var y = endPointCoord.YCoorinate - startPointCoord.YCoorinate;
-            var z = endPointCoord.ZCoorinate - startPointCoord.ZCoorinate;
+            var x = endPointCoord.XCoordinate - startPointCoord.XCoordinate;
+            var y = endPointCoord.YCoordinate - startPointCoord.YCoordinate;
+            var z = endPointCoord.ZCoordinate - startPointCoord.ZCoordinate;
             var expectedResultCoordinates = new Coordinates(x, y, z);
             var expectedResult = new Vector(expectedResultCoordinates);
 
@@ -56,17 +56,17 @@ namespace ComputerGraphicsLabs.Models.Tests.ComputeObjects
             var u = AutoFaker.Generate<Vector>();
             var vCoord = v.Coordinates;
             var uCoord = u.Coordinates;
-            var x = vCoord.YCoorinate * uCoord.ZCoorinate - vCoord.ZCoorinate * uCoord.YCoorinate;
-            var y = vCoord.ZCoorinate * uCoord.XCoorinate - vCoord.XCoorinate * uCoord.ZCoorinate;
-            var z = vCoord.XCoorinate * uCoord.YCoorinate - vCoord.YCoorinate * uCoord.XCoorinate;
+            var x = vCoord.YCoordinate * uCoord.ZCoordinate - vCoord.ZCoordinate * uCoord.YCoordinate;
+            var y = vCoord.ZCoordinate * uCoord.XCoordinate - vCoord.XCoordinate * uCoord.ZCoordinate;
+            var z = vCoord.XCoordinate * uCoord.YCoordinate - vCoord.YCoordinate * uCoord.XCoordinate;
 
             // act
             var result = Vector.Cross(v, u);
 
             // assert
-            Math.Abs(x - result.Coordinates.XCoorinate).Should().BeLessThan(ACCURACY);
-            Math.Abs(y - result.Coordinates.YCoorinate).Should().BeLessThan(ACCURACY);
-            Math.Abs(z - result.Coordinates.ZCoorinate).Should().BeLessThan(ACCURACY);
+            Math.Abs(x - result.Coordinates.XCoordinate).Should().BeLessThan(ACCURACY);
+            Math.Abs(y - result.Coordinates.YCoordinate).Should().BeLessThan(ACCURACY);
+            Math.Abs(z - result.Coordinates.ZCoordinate).Should().BeLessThan(ACCURACY);
         }
 
         [Fact]
@@ -78,9 +78,9 @@ namespace ComputerGraphicsLabs.Models.Tests.ComputeObjects
             var expectedResult = 0d;
             var vCoord = v.Coordinates;
             var uCoord = u.Coordinates;
-            expectedResult += vCoord.XCoorinate * uCoord.XCoorinate;
-            expectedResult += vCoord.YCoorinate * uCoord.YCoorinate;
-            expectedResult += vCoord.ZCoorinate * uCoord.ZCoorinate;
+            expectedResult += vCoord.XCoordinate * uCoord.XCoordinate;
+            expectedResult += vCoord.YCoordinate * uCoord.YCoordinate;
+            expectedResult += vCoord.ZCoordinate * uCoord.ZCoordinate;
 
             // act
             var result = Vector.Dot(v, u);
@@ -94,9 +94,9 @@ namespace ComputerGraphicsLabs.Models.Tests.ComputeObjects
         {
             // arrange
             var vector = AutoFaker.Generate<Vector>();
-            var expectedX = -vector.Coordinates.XCoorinate;
-            var expectedY = -vector.Coordinates.YCoorinate;
-            var expectedZ = -vector.Coordinates.ZCoorinate;
+            var expectedX = -vector.Coordinates.XCoordinate;
+            var expectedY = -vector.Coordinates.YCoordinate;
+            var expectedZ = -vector.Coordinates.ZCoordinate;
             var expectedResultCoordinates = new Coordinates(expectedX, expectedY, expectedZ);
             var expectedResult = new Vector(expectedResultCoordinates);
 
@@ -113,9 +113,9 @@ namespace ComputerGraphicsLabs.Models.Tests.ComputeObjects
             // arrange
             var vector = AutoFaker.Generate<Vector>();
             var num = AutoFaker.Generate<double>();
-            var expectedX = vector.Coordinates.XCoorinate * num;
-            var expectedY = vector.Coordinates.YCoorinate * num;
-            var expectedZ = vector.Coordinates.ZCoorinate * num;
+            var expectedX = vector.Coordinates.XCoordinate * num;
+            var expectedY = vector.Coordinates.YCoordinate * num;
+            var expectedZ = vector.Coordinates.ZCoordinate * num;
             var expectedResultCoordinates = new Coordinates(expectedX, expectedY, expectedZ);
             var expectedResult = new Vector(expectedResultCoordinates);
 
@@ -132,17 +132,17 @@ namespace ComputerGraphicsLabs.Models.Tests.ComputeObjects
             // arrange
             var vector = AutoFaker.Generate<Vector>();
             var num = AutoFaker.Generate<double>();
-            var expectedX = vector.Coordinates.XCoorinate / num;
-            var expectedY = vector.Coordinates.YCoorinate / num;
-            var expectedZ = vector.Coordinates.ZCoorinate / num;
+            var expectedX = vector.Coordinates.XCoordinate / num;
+            var expectedY = vector.Coordinates.YCoordinate / num;
+            var expectedZ = vector.Coordinates.ZCoordinate / num;
 
             // act
             var result = vector / num;
 
             // assert
-            Math.Abs(expectedX - result.Coordinates.XCoorinate).Should().BeLessThan(ACCURACY);
-            Math.Abs(expectedY - result.Coordinates.YCoorinate).Should().BeLessThan(ACCURACY);
-            Math.Abs(expectedZ - result.Coordinates.ZCoorinate).Should().BeLessThan(ACCURACY);
+            Math.Abs(expectedX - result.Coordinates.XCoordinate).Should().BeLessThan(ACCURACY);
+            Math.Abs(expectedY - result.Coordinates.YCoordinate).Should().BeLessThan(ACCURACY);
+            Math.Abs(expectedZ - result.Coordinates.ZCoordinate).Should().BeLessThan(ACCURACY);
         }
 
         [Fact]
@@ -151,9 +151,9 @@ namespace ComputerGraphicsLabs.Models.Tests.ComputeObjects
             // arrange
             var vectorA = AutoFaker.Generate<Vector>();
             var vectorB = AutoFaker.Generate<Vector>();
-            var expectedX = vectorA.Coordinates.XCoorinate + vectorB.Coordinates.XCoorinate;
-            var expectedY = vectorA.Coordinates.YCoorinate + vectorB.Coordinates.YCoorinate;
-            var expectedZ = vectorA.Coordinates.ZCoorinate + vectorB.Coordinates.ZCoorinate;
+            var expectedX = vectorA.Coordinates.XCoordinate + vectorB.Coordinates.XCoordinate;
+            var expectedY = vectorA.Coordinates.YCoordinate + vectorB.Coordinates.YCoordinate;
+            var expectedZ = vectorA.Coordinates.ZCoordinate + vectorB.Coordinates.ZCoordinate;
             var expectedResultCoordinates = new Coordinates(expectedX, expectedY, expectedZ);
             var expectedResult = new Vector(expectedResultCoordinates);
 
@@ -170,9 +170,9 @@ namespace ComputerGraphicsLabs.Models.Tests.ComputeObjects
             // arrange
             var vector = AutoFaker.Generate<Vector>();
             var point = AutoFaker.Generate<Vector>();
-            var expectedX = vector.Coordinates.XCoorinate + point.Coordinates.XCoorinate;
-            var expectedY = vector.Coordinates.YCoorinate + point.Coordinates.YCoorinate;
-            var expectedZ = vector.Coordinates.ZCoorinate + point.Coordinates.ZCoorinate;
+            var expectedX = vector.Coordinates.XCoordinate + point.Coordinates.XCoordinate;
+            var expectedY = vector.Coordinates.YCoordinate + point.Coordinates.YCoordinate;
+            var expectedZ = vector.Coordinates.ZCoordinate + point.Coordinates.ZCoordinate;
             var expectedResultCoordinates = new Coordinates(expectedX, expectedY, expectedZ);
             var expectedResult = new Vector(expectedResultCoordinates);
 

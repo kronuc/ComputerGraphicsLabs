@@ -12,17 +12,17 @@ namespace ComputerGraphicsLabs.Models.Tests
         {
             // arrange
             var point = AutoFaker.Generate<Point>();
-            var expectedX = -point.Coordinates.XCoorinate;
-            var expectedY = -point.Coordinates.YCoorinate;
-            var expectedZ = -point.Coordinates.ZCoorinate;
+            var expectedX = -point.Coordinates.XCoordinate;
+            var expectedY = -point.Coordinates.YCoordinate;
+            var expectedZ = -point.Coordinates.ZCoordinate;
 
             // act
             var result = -point;
 
             // assert
-            result.Coordinates.XCoorinate.Should().Be(expectedX);
-            result.Coordinates.YCoorinate.Should().Be(expectedY);
-            result.Coordinates.ZCoorinate.Should().Be(expectedZ);
+            result.Coordinates.XCoordinate.Should().Be(expectedX);
+            result.Coordinates.YCoordinate.Should().Be(expectedY);
+            result.Coordinates.ZCoordinate.Should().Be(expectedZ);
         }
 
         [Fact]
@@ -31,17 +31,17 @@ namespace ComputerGraphicsLabs.Models.Tests
             // arrange
             var pointA = AutoFaker.Generate<Point>();
             var pointB = AutoFaker.Generate<Point>();
-            var expectedX = pointA.Coordinates.XCoorinate + pointB.Coordinates.XCoorinate;
-            var expectedY = pointA.Coordinates.YCoorinate + pointB.Coordinates.YCoorinate;
-            var expectedZ = pointA.Coordinates.ZCoorinate + pointB.Coordinates.ZCoorinate;
+            var expectedX = pointA.Coordinates.XCoordinate + pointB.Coordinates.XCoordinate;
+            var expectedY = pointA.Coordinates.YCoordinate + pointB.Coordinates.YCoordinate;
+            var expectedZ = pointA.Coordinates.ZCoordinate + pointB.Coordinates.ZCoordinate;
 
             // act
             var result = pointA + pointB;
 
             // assert
-            result.Coordinates.XCoorinate.Should().Be(expectedX);
-            result.Coordinates.YCoorinate.Should().Be(expectedY);
-            result.Coordinates.ZCoorinate.Should().Be(expectedZ);
+            result.Coordinates.XCoordinate.Should().Be(expectedX);
+            result.Coordinates.YCoordinate.Should().Be(expectedY);
+            result.Coordinates.ZCoordinate.Should().Be(expectedZ);
         }
 
 
@@ -51,17 +51,17 @@ namespace ComputerGraphicsLabs.Models.Tests
             // arrange
             var pointA = AutoFaker.Generate<Point>();
             var pointB = AutoFaker.Generate<Point>();
-            var expectedX = pointA.Coordinates.XCoorinate - pointB.Coordinates.XCoorinate;
-            var expectedY = pointA.Coordinates.YCoorinate - pointB.Coordinates.YCoorinate;
-            var expectedZ = pointA.Coordinates.ZCoorinate - pointB.Coordinates.ZCoorinate;
+            var expectedX = pointA.Coordinates.XCoordinate - pointB.Coordinates.XCoordinate;
+            var expectedY = pointA.Coordinates.YCoordinate - pointB.Coordinates.YCoordinate;
+            var expectedZ = pointA.Coordinates.ZCoordinate - pointB.Coordinates.ZCoordinate;
 
             // act
             var result = pointA - pointB;
 
             // assert
-            result.Coordinates.XCoorinate.Should().Be(expectedX);
-            result.Coordinates.YCoorinate.Should().Be(expectedY);
-            result.Coordinates.ZCoorinate.Should().Be(expectedZ);
+            result.Coordinates.XCoordinate.Should().Be(expectedX);
+            result.Coordinates.YCoordinate.Should().Be(expectedY);
+            result.Coordinates.ZCoordinate.Should().Be(expectedZ);
         }
     }
 }

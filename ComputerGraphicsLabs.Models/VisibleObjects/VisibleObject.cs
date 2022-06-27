@@ -12,9 +12,9 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
 
         protected Point GetPointOfInterseciton(Vector vectorToIntersecitonPoint, Ray ray)
         {
-            var x = vectorToIntersecitonPoint.Coordinates.XCoorinate + ray.Origin.Coordinates.XCoorinate;
-            var y = vectorToIntersecitonPoint.Coordinates.YCoorinate + ray.Origin.Coordinates.YCoorinate;
-            var z = vectorToIntersecitonPoint.Coordinates.ZCoorinate + ray.Origin.Coordinates.ZCoorinate;
+            var x = vectorToIntersecitonPoint.Coordinates.XCoordinate + ray.Origin.Coordinates.XCoordinate;
+            var y = vectorToIntersecitonPoint.Coordinates.YCoordinate + ray.Origin.Coordinates.YCoordinate;
+            var z = vectorToIntersecitonPoint.Coordinates.ZCoordinate + ray.Origin.Coordinates.ZCoordinate;
 
             var coordOfPointOfIntersection = new Coordinates(x, y, z);
             var result = new Point(coordOfPointOfIntersection);
