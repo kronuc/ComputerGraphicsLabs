@@ -1,9 +1,7 @@
 ﻿using ComputerGraphicsLabs.Models.ComputeObjects;
 using ComputerGraphicsLabs.Models.MainObjects;
 using ComputerGraphicsLabs.Models.VisibleObjects;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ComputerGraphicsLabs.Models.Shadow
 {

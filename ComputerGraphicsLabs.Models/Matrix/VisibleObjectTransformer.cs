@@ -7,24 +7,14 @@ namespace ComputerGraphicsLabs.Models.Matrix
 {
     public class VisibleObjectTransformer
     {
-        private static void Apply(Tringle obj, Matrix matrix)
-        {
-            matrix.ApplyTo(obj.APoint);
-            matrix.ApplyTo(obj.BPoint);
-            matrix.ApplyTo(obj.CPoint);
-        }
-
         private static void Apply(IEnumerable<Tringle> figure, Matrix matrix)
         {
-            var vertices = figure.SelectMany(t => new Point[] { t.APoint, t.BPoint, t.CPoint }).Distinct();
-            foreach (var vertex in vertices) matrix.ApplyTo(vertex);
-        }
+            var points = figure.SelectMany(t => new Point[] { t.APoint, t.BPoint, t.CPoint }).Distinct();
+            foreach (var point in points) matrix.ApplyToPoint(point);
 
-        #region Scale
+            var normals = figure.Select(t => t.Normal).Distinct();
+            foreach (var normal in normals) matrix.ApplyToVector(normal);
 
-        public static void Scale(Tringle obj, double multiplier)
-        {
-            Apply(obj, Matrix.Scaling(multiplier));
         }
 
         public static void Scale(IEnumerable<Tringle> figure, double multiplier)
@@ -32,34 +22,14 @@ namespace ComputerGraphicsLabs.Models.Matrix
             Apply(figure, Matrix.Scaling(multiplier));
         }
 
-        #endregion
-
-        #region Rotate
-
-        public static void Rotate(Tringle obj, Vector axis, double angle)
-        {
-            Apply(obj, Matrix.Rotation(axis, angle));
-        }
-
         public static void Rotate(IEnumerable<Tringle> figure, Vector axis, double angle)
         {
-            Apply(figure, Matrix.Rotation(axis, angle));
+            Apply(figure, Matrix.Turning(axis, angle));
         }
 
-        #endregion
-
-        #region Transite
-
-        public static void Transite(Tringle obj, double offsetX, double offsetY, double offsetZ)
+        public static void Transite(IEnumerable<Tringle> figure, double moveX, double moveY, double moveZ)
         {
-            Apply(obj, Matrix.Transition(offsetX, offsetY, offsetZ));
+            Apply(figure, Matrix.Moving(moveX, moveY, moveZ));
         }
-
-        public static void Transite(IEnumerable<Tringle> figure, double offsetX, double offsetY, double offsetZ)
-        {
-            Apply(figure, Matrix.Transition(offsetX, offsetY, offsetZ));
-        }
-
-        #endregion
     }
 }
