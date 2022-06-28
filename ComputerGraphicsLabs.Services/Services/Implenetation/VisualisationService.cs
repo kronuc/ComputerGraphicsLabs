@@ -38,7 +38,7 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation
                 100
                 );
 
-            var light = new Light(new Point(new Coordinates(-300, 0, 300)));
+            var light = new Light(new Point(new Coordinates(-300, 0, 0)));
             _scene = new Scene(viewer, light);
         }
 

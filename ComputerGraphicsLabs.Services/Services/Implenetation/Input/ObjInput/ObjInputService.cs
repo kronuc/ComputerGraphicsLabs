@@ -17,7 +17,7 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation.Input.ObjInput
 
         public List<VisibleObject> GetVisibleObjects()
         {
-            using var streamReader = new StreamReader($"C:\\Users\\Lenovo\\Desktop\\sphere.obj");
+            using var streamReader = new StreamReader($"C:\\Users\\Lenovo\\Desktop\\cow.obj");
 
             var line = streamReader.ReadLine();
             var pattern = @"\s+";

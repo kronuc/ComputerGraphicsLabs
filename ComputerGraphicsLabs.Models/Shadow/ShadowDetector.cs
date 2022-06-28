@@ -2,6 +2,7 @@
 using ComputerGraphicsLabs.Models.MainObjects;
 using ComputerGraphicsLabs.Models.VisibleObjects;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ComputerGraphicsLabs.Models.Shadow
 {
@@ -16,14 +17,15 @@ namespace ComputerGraphicsLabs.Models.Shadow
                 -devitionVector.Coordinates.YCoordinate + point.Coordinates.YCoordinate,
                 -devitionVector.Coordinates.ZCoordinate + point.Coordinates.ZCoordinate));
 
-            var vectorToLight = -(light.Origin - newPoint);
+            var vectorToLight = newPoint - light.Origin;
             var rayToLight = new Ray(newPoint, vectorToLight);
-            foreach(var obj in objects)
-            {
-                if (obj.Getintersection(rayToLight).HasIntersecion && obj != target)
-                    return true;
-            }
-            return false;
+            var intersection = objects
+                .AsParallel()
+                .Select(visibleObject => visibleObject.Getintersection(rayToLight))
+                .Where(intersection => intersection.HasIntersecion && intersection.Target != target)
+                .FirstOrDefault();
+
+            return intersection != null;
         }
     }
 }

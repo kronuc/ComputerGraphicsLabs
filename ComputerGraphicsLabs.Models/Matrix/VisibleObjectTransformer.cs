@@ -7,10 +7,12 @@ namespace ComputerGraphicsLabs.Models.Matrix
 {
     public class VisibleObjectTransformer
     {
-        private static void Apply(IEnumerable<Tringle> figure, Matrix matrix)
+        private static void Apply(IEnumerable<Tringle> figure, Matrix matrix, bool applyToNormals)
         {
             var points = figure.SelectMany(t => new Point[] { t.APoint, t.BPoint, t.CPoint }).Distinct();
             foreach (var point in points) matrix.ApplyToPoint(point);
+
+            if (!applyToNormals) return;
 
             var normals = figure.Select(t => t.Normal).Distinct();
             foreach (var normal in normals) matrix.ApplyToVector(normal);
@@ -19,17 +21,17 @@ namespace ComputerGraphicsLabs.Models.Matrix
 
         public static void Scale(IEnumerable<Tringle> figure, double multiplier)
         {
-            Apply(figure, Matrix.Scaling(multiplier));
+            Apply(figure, Matrix.Scaling(multiplier), false);
         }
 
         public static void Rotate(IEnumerable<Tringle> figure, Vector axis, double angle)
         {
-            Apply(figure, Matrix.Turning(axis, angle));
+            Apply(figure, Matrix.Turning(axis, angle), true);
         }
 
         public static void Transite(IEnumerable<Tringle> figure, double moveX, double moveY, double moveZ)
         {
-            Apply(figure, Matrix.Moving(moveX, moveY, moveZ));
+            Apply(figure, Matrix.Moving(moveX, moveY, moveZ), false);
         }
     }
 }

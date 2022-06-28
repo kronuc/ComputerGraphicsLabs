@@ -12,7 +12,7 @@ namespace ComputerGraphicsLabs.Models.Matrix
             _body = new double[4, 4];
         }
 
-        public double[,] Source { get => _body; }
+        public double[,] Body { get => _body; }
 
 
         public void ApplyToPoint(Point point)
@@ -53,8 +53,8 @@ namespace ComputerGraphicsLabs.Models.Matrix
         {
             Matrix matrix = new Matrix();
             for (int i = 0; i < 3; i++)
-                matrix.Source[i, i] = mult;
-            matrix.Source[3, 3] = 1;
+                matrix.Body[i, i] = mult;
+            matrix.Body[3, 3] = 1;
             return matrix;
         }
 
@@ -71,16 +71,16 @@ namespace ComputerGraphicsLabs.Models.Matrix
             var y = unitCoord.YCoordinate;
             var z = unitCoord.ZCoordinate;
 
-            matrix.Source[0, 0] = x * x * (1 - cos) + 1 * cos;
-            matrix.Source[0, 1] = y * x * (1 - cos) - z * sin;
-            matrix.Source[0, 2] = z * x * (1 - cos) + y * sin;
-            matrix.Source[1, 0] = x * y * (1 - cos) + z * sin;
-            matrix.Source[1, 1] = y * y * (1 - cos) + 1 * cos;
-            matrix.Source[1, 2] = z * y * (1 - cos) - x * sin;
-            matrix.Source[2, 0] = x * z * (1 - cos) - y * sin;
-            matrix.Source[2, 1] = y * z * (1 - cos) + x * sin;
-            matrix.Source[2, 2] = z * z * (1 - cos) + 1 * cos;
-            matrix.Source[3, 3] = 1;
+            matrix.Body[0, 0] = x * x * (1 - cos) + 1 * cos;
+            matrix.Body[0, 1] = y * x * (1 - cos) - z * sin;
+            matrix.Body[0, 2] = z * x * (1 - cos) + y * sin;
+            matrix.Body[1, 0] = x * y * (1 - cos) + z * sin;
+            matrix.Body[1, 1] = y * y * (1 - cos) + 1 * cos;
+            matrix.Body[1, 2] = z * y * (1 - cos) - x * sin;
+            matrix.Body[2, 0] = x * z * (1 - cos) - y * sin;
+            matrix.Body[2, 1] = y * z * (1 - cos) + x * sin;
+            matrix.Body[2, 2] = z * z * (1 - cos) + 1 * cos;
+            matrix.Body[3, 3] = 1;
 
             return matrix;
         }
@@ -89,8 +89,8 @@ namespace ComputerGraphicsLabs.Models.Matrix
         {
             var matrix = new Matrix();
             var xyz = new double[3] { moveX, moveY, moveZ };
-            for (int i =0; i < 4; i++) matrix.Source[i, i] = 1;
-            for (int i = 0; i < 3; i++) matrix.Source[3, i] = xyz[i];
+            for (int i =0; i < 4; i++) matrix.Body[i, i] = 1;
+            for (int i = 0; i < 3; i++) matrix.Body[3, i] = xyz[i];
             return matrix;
         }
     }
