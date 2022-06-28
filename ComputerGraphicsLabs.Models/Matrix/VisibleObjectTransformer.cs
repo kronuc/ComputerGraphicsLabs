@@ -24,9 +24,19 @@ namespace ComputerGraphicsLabs.Models.Matrix
             Apply(figure, Matrix.Scaling(multiplier), false);
         }
 
-        public static void Rotate(IEnumerable<Tringle> figure, Vector axis, double angle)
+        public static void RotateX(IEnumerable<Tringle> figure, double angle)
         {
-            Apply(figure, Matrix.Turning(axis, angle), true);
+            Apply(figure, Matrix.TurningX(angle), true);
+        }
+
+
+        public static void RotateY(IEnumerable<Tringle> figure, double angle)
+        {
+            Apply(figure, Matrix.TurningY(angle), true);
+        }
+        public static void RotateZ(IEnumerable<Tringle> figure, double angle)
+        {
+            Apply(figure, Matrix.TurningZ(angle), true);
         }
 
         public static void Transite(IEnumerable<Tringle> figure, double moveX, double moveY, double moveZ)

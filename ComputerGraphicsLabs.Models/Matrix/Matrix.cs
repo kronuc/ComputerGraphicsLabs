@@ -30,9 +30,9 @@ namespace ComputerGraphicsLabs.Models.Matrix
             var vCoord = vector.Coordinates;
             double[] vector4 = new double[] { vCoord.XCoordinate, vCoord.YCoordinate, vCoord.ZCoordinate, 1 };
             double[] result = MultiplyBy(vector4);
-            vCoord.XCoordinate = result[0];
-            vCoord.YCoordinate = result[1];
-            vCoord.ZCoordinate = result[2];
+            vCoord.XCoordinate = result[0] / result[3];
+            vCoord.YCoordinate = result[1] / result[3];
+            vCoord.ZCoordinate = result[2] / result[3];
         }
 
         private double[] MultiplyBy(double[] vector4)
@@ -58,28 +58,52 @@ namespace ComputerGraphicsLabs.Models.Matrix
             return matrix;
         }
 
-        public static Matrix Turning(Vector axis, double angle)
+        public static Matrix TurningX(double angle)
         {
             var matrix = new Matrix();
 
             var cos = Math.Cos(angle);
             var sin = Math.Sin(angle);
 
-            var unit = axis / axis.GetModule();
-            var unitCoord = unit.Coordinates;
-            var x = unitCoord.XCoordinate;
-            var y = unitCoord.YCoordinate;
-            var z = unitCoord.ZCoordinate;
+            matrix.Body[0, 0] = 1;
+            matrix.Body[1, 1] = cos;
+            matrix.Body[1, 2] = -sin;
+            matrix.Body[2, 1] = sin;
+            matrix.Body[2, 2] = cos;
+            matrix.Body[3, 3] = 1;
 
-            matrix.Body[0, 0] = x * x * (1 - cos) + 1 * cos;
-            matrix.Body[0, 1] = y * x * (1 - cos) - z * sin;
-            matrix.Body[0, 2] = z * x * (1 - cos) + y * sin;
-            matrix.Body[1, 0] = x * y * (1 - cos) + z * sin;
-            matrix.Body[1, 1] = y * y * (1 - cos) + 1 * cos;
-            matrix.Body[1, 2] = z * y * (1 - cos) - x * sin;
-            matrix.Body[2, 0] = x * z * (1 - cos) - y * sin;
-            matrix.Body[2, 1] = y * z * (1 - cos) + x * sin;
-            matrix.Body[2, 2] = z * z * (1 - cos) + 1 * cos;
+            return matrix;
+        }
+
+        public static Matrix TurningY(double angle)
+        {
+            var matrix = new Matrix();
+
+            var cos = Math.Cos(angle);
+            var sin = Math.Sin(angle);
+
+            matrix.Body[0, 0] = cos;
+            matrix.Body[0, 2] = sin;
+            matrix.Body[1, 1] = 1;
+            matrix.Body[2, 0] = -sin;
+            matrix.Body[2, 2] = cos;
+            matrix.Body[3, 3] = 1;
+
+            return matrix;
+        }
+
+        public static Matrix TurningZ(double angle)
+        {
+            var matrix = new Matrix();
+
+            var cos = Math.Cos(angle);
+            var sin = Math.Sin(angle);
+
+            matrix.Body[0, 0] = cos;
+            matrix.Body[0, 1] = -sin;
+            matrix.Body[1, 0] = sin;
+            matrix.Body[1, 1] = cos;
+            matrix.Body[2, 2] = 1;
             matrix.Body[3, 3] = 1;
 
             return matrix;
@@ -90,7 +114,7 @@ namespace ComputerGraphicsLabs.Models.Matrix
             var matrix = new Matrix();
             var xyz = new double[3] { moveX, moveY, moveZ };
             for (int i =0; i < 4; i++) matrix.Body[i, i] = 1;
-            for (int i = 0; i < 3; i++) matrix.Body[3, i] = xyz[i];
+            for (int i = 0; i < 3; i++) matrix.Body[i, 3] = xyz[i];
             return matrix;
         }
     }
