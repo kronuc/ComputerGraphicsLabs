@@ -12,26 +12,23 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
         public Point BPoint { get; set; }
         public Point CPoint { get; set; }
 
-        public Vector NormalA { get; set; }
-        public Vector NormalB { get; set; }
-        public Vector NormalC { get; set; }
+        public Vector Normal { get; set; }
 
         public Tringle(Point aPoint, Point bPoint, Point cPoint)
         {
             APoint = aPoint;
             BPoint = bPoint;
             CPoint = cPoint;
+            Normal = Vector.Cross(CPoint - APoint, BPoint - APoint);
         }
 
 
-        public Tringle(Point aPoint, Point bPoint, Point cPoint, Vector normalA, Vector normalB, Vector normalC)
+        public Tringle(Point aPoint, Point bPoint, Point cPoint, Vector normalA)
         {
             APoint = aPoint;
             BPoint = bPoint;
             CPoint = cPoint;
-            NormalA = normalA;
-            NormalB = normalB;
-            NormalC = normalC;
+            Normal = normalA;
         }
 
         public override IntersecitonInfo Getintersection(Ray ray)
@@ -59,7 +56,7 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
             var pointOfInterseciton = GetPointOfInterseciton(vectorToIntersecitonPoint, ray);
 
             var distanceToIntersection = vectorToIntersecitonPoint.GetModule();
-            var normalWithLenghtOne = GetVectorWithLenghtOne(NormalA);
+            var normalWithLenghtOne = GetVectorWithLenghtOne(Normal);
 
             return new IntersecitonInfo(pointOfInterseciton, distanceToIntersection, normalWithLenghtOne, this);
         }

@@ -1,7 +1,6 @@
 ﻿using ComputerGraphicsLabs.Models.ComputeObjects;
 using ComputerGraphicsLabs.Models.VisibleObjects;
 using ComputerGraphicsLabs.Services.Services.Abstracion;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -21,12 +20,12 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation.Input.ObjInput
             using var streamReader = new StreamReader($"C:\\Users\\Lenovo\\Desktop\\cow.obj");
 
             var line = streamReader.ReadLine();
-
+            var pattern = @"\s+";
             while (line != null)
             {
-                ParseLineForNormals(Regex.Split(line, @"\s+"));
-                ParseLineForPoints(Regex.Split(line, @"\s+"));
-                ParseLineForVS(Regex.Split(line, @"\s+"));
+                ParseLineForNormals(Regex.Split(line, pattern));
+                ParseLineForPoints(Regex.Split(line, pattern));
+                ParseLineForVS(Regex.Split(line, pattern));
                 line = streamReader.ReadLine();
             }
             
@@ -38,51 +37,50 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation.Input.ObjInput
             if (line.Length == 0 || line[0] != "v")
                 return;
 
-            _points.Add(new Point(new Coordinates(
-                float.Parse(line[1], CultureInfo.InvariantCulture),
-                float.Parse(line[2], CultureInfo.InvariantCulture),
-                float.Parse(line[3], CultureInfo.InvariantCulture))));
+            var x = float.Parse(line[1], CultureInfo.InvariantCulture);
+            var y = float.Parse(line[2], CultureInfo.InvariantCulture);
+            var z = float.Parse(line[3], CultureInfo.InvariantCulture);
+            var coord = new Coordinates(x, y, z);
+            var point = new Point(coord);
+            _points.Add(point);
+
         }
+
         public void ParseLineForVS(string[] line)
         {
             if (line.Length == 0 || line[0] != "f")
                 return;
 
-            var firstIndex = line[1].Split("/");
-            var vertices = new List<int>();
-            var normals = firstIndex.Length > 2 ? new List<int>() : null;
+            var firstSet = line[1].Split("/");
+            var pointId = new List<int>();
+            var normals = firstSet.Length > 2 ? new List<int>() : null;
 
             foreach (var indexes in line.Skip(1))
             {
                 if (indexes == "") continue;
                 var index = indexes.Split("/");
-                vertices.Add(int.Parse(index[0]));
+                pointId.Add(int.Parse(index[0]));
                 normals?.Add(int.Parse(index[2]));
             }
 
-
-            var faceVertices = vertices.Select(index => _points[index - 1]).ToList();
-            var faceNormals = (IEnumerable<Vector>?)null;
+            var objPoints = pointId.Select(index => _points[index - 1]).ToList();
+            var objNormals = new List<Vector>();
 
             if (normals != null)
             {
-                faceNormals = normals.Select(index => _normals[index - 1]).ToList();
+                objNormals = normals.Select(index => _normals[index - 1]).ToList();
             }
             
-            var listVertices = vertices.ToList();
-
-            if (listVertices.Count != 3)
-                throw new NotImplementedException();
-
-            if (normals is null)
+            if (normals == null)
             {
-                _visibleObjects.Add(new Tringle(faceVertices[0], faceVertices[1], faceVertices[2]));
+                _visibleObjects.Add(new Tringle(objPoints[0], objPoints[1], objPoints[2]));
                 return;
             }
-            var listNormals = faceNormals.ToList();
 
-            _visibleObjects.Add(new Tringle(faceVertices[0], faceVertices[1], faceVertices[2],
-                listNormals[0], listNormals[1], listNormals[2]));
+            var normal = objNormals.FirstOrDefault();
+
+            _visibleObjects.Add(new Tringle(objPoints[0], objPoints[1], objPoints[2],
+                normal));
         }
 
         public void ParseLineForNormals(string[] line)
@@ -90,10 +88,12 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation.Input.ObjInput
             if (line.Length == 0 || line[0] != "vn")
                 return;
 
-            _normals.Add(new Vector(new Coordinates(
-                float.Parse(line[1], CultureInfo.InvariantCulture),
-                float.Parse(line[2], CultureInfo.InvariantCulture),
-                float.Parse(line[3], CultureInfo.InvariantCulture))));
+            var x = float.Parse(line[1], CultureInfo.InvariantCulture);
+            var y = float.Parse(line[2], CultureInfo.InvariantCulture);
+            var z = float.Parse(line[3], CultureInfo.InvariantCulture);
+            var coord = new Coordinates(x, y, z);
+            var vector = new Vector(coord);
+            _normals.Add(vector);
         }
     }
 }

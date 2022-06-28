@@ -31,8 +31,8 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation
             var viewer = new Viewer(
                 height: 100,
                 width: 100,
-                pixelInHeight: 200,
-                pixelinWidth: 200,
+                pixelInHeight: 100,
+                pixelinWidth: 100,
                 new Coordinates(-150, 0, 0),
                 new Vector(new Coordinates(1, 0, 0)),
                 100
