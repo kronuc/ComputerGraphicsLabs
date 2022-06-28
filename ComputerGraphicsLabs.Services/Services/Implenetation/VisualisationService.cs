@@ -31,14 +31,14 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation
             var viewer = new Viewer(
                 height: 100,
                 width: 100,
-                pixelInHeight: 100,
-                pixelinWidth: 100,
-                new Coordinates(-150, 0, 0),
+                pixelInHeight: 250,
+                pixelinWidth: 250,
+                new Coordinates(-100, 0, 0),
                 new Vector(new Coordinates(1, 0, 0)),
                 100
                 );
 
-            var light = new Light(new Point(new Coordinates(-300, 0, 0)));
+            var light = new Light(new Point(new Coordinates(0, 0, 300)));
             _scene = new Scene(viewer, light);
         }
 

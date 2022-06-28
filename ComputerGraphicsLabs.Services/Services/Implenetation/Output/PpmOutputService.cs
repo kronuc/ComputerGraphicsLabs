@@ -41,9 +41,9 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation.Output
         private Color GetColor(Pixel pixel)
         {
             if (!pixel.HasIntersection) return Color.White;
+            if (pixel.HasShadow) return Color.DarkGray;
             if (pixel.HasIntersection && pixel.AngleBeetwinLightAndViewRay <= 0) return Color.Black;
-            if (pixel.AngleBeetwinLightAndViewRay >= 0 && pixel.HasShadow) return Color.DarkGray;
-
+            
             var colorR = (int)(250 * pixel.AngleBeetwinLightAndViewRay);
             if (colorR > 250) colorR = 250;
             if (colorR < 1) colorR = 1;

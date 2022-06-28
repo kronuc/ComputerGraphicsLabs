@@ -8,7 +8,7 @@ namespace ComputerGraphicsLabs.Models.Shadow
 {
     public class ShadowDetector
     {
-        private const double ACCURACY = 0.1;
+        private const double ACCURACY = 0.001;
 
         public static bool HasShadow(Point point, Vector nomal, Light light, List<VisibleObject> objects, VisibleObject target)
         {
