@@ -12,7 +12,7 @@ namespace ComputerGraphicsLabs.Services
         public static IServiceCollection AddVisualisationServices(this IServiceCollection services)
         {
             services.AddSingleton<IInputService, ObjInputService>();
-            services.AddSingleton<IOutputService, ConsoleOutputService>();
+            services.AddSingleton<IOutputService, PpmOutputService>();
             services.AddSingleton<IVisualisationService, VisualisationService>();
             return services;
         }

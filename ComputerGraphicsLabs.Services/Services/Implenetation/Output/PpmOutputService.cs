@@ -33,8 +33,9 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation.Output
                 if (colorR < 1) colorR = 1;
                 
                 var color = Color.FromArgb(colorR, colorR, 0,0);
-                if (!pixel.HasIntersection || pixel.AngleBeetwinLightAndViewRay <= 0) color = Color.Black;
-                
+                if(pixel.AngleBeetwinLightAndViewRay <= 0) color = Color.Black;
+                if (!pixel.HasIntersection) color = Color.White;
+
                 file.WriteLine(color.R + " " + color.G + " " + color.B);
             }
             file.Flush();
