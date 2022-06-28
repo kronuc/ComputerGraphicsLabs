@@ -56,16 +56,6 @@ namespace ComputerGraphicsLabs.Models.ComputeObjects
             return result;
         }
 
-        public static Vector operator *(Vector v, Vector u)
-        {
-            var vCoord = v.Coordinates;
-            var uCoord = u.Coordinates;
-            var x = v.Coordinates.YCoordinate * u.Coordinates.ZCoordinate - v.Coordinates.ZCoordinate * u.Coordinates.YCoordinate;
-            var y = v.Coordinates.ZCoordinate * u.Coordinates.XCoordinate - v.Coordinates.XCoordinate * u.Coordinates.ZCoordinate;
-            var z = v.Coordinates.XCoordinate * u.Coordinates.YCoordinate - v.Coordinates.YCoordinate * u.Coordinates.XCoordinate;
-            var resultCoordinates = new Coordinates(x, y, z);
-            return new Vector(resultCoordinates);
-        }
         public static Vector operator -(Vector v) => v * (-1d);
 
         public static Vector operator *(Vector v, double d)

@@ -23,7 +23,7 @@ namespace ComputerGraphicsLabs
             var inputService = serviceProvider.GetService<IInputService>();
             var visibleObjects = inputService.GetVisibleObjects().Select(obj => (Tringle)obj);
 
-            VisibleObjectTransformer.Scale(visibleObjects, 40);
+            VisibleObjectTransformer.Scale(visibleObjects, 7);
             VisibleObjectTransformer.Rotate(visibleObjects, new Vector(new Coordinates(1,-0.5,0)),  3.14 * 0.5);
             vs.AddVisibleObjects(visibleObjects.Select(visibleObject => (VisibleObject)visibleObject).ToList());
             var picture = vs.GetPicture();

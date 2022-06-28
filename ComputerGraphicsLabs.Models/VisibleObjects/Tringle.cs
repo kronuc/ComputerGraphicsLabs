@@ -22,7 +22,6 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
             Normal = Vector.Cross(CPoint - APoint, BPoint - APoint);
         }
 
-
         public Tringle(Point aPoint, Point bPoint, Point cPoint, Vector normalA)
         {
             APoint = aPoint;
@@ -37,16 +36,16 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
             var edge1 = BPoint - APoint;
             var edge2 = CPoint - APoint;
 
-            var h = ray.Direction * edge2;
-            var det = Vector.Dot(h, edge1);
+            var normalToRayAndEdge = Vector.Cross(ray.Direction , edge2);
+            var det = Vector.Dot(normalToRayAndEdge, edge1);
 
             if (det < ACCURACY) return GetEmptyIntersectionInfo();
 
-            var s = ray.Origin - APoint;
-            var u = Vector.Dot(h, s) / det;
+            var fromAtoLight = ray.Origin - APoint;
+            var u = Vector.Dot(normalToRayAndEdge, fromAtoLight) / det;
             if (u < 0.0 || u > 1.0) return GetEmptyIntersectionInfo();
 
-            var q = s * edge1;
+            var q = Vector.Cross(fromAtoLight, edge1);
             var v = Vector.Dot(q, rayDirection) / det;
             if (v < 0.0 || u + v > 1.0) return GetEmptyIntersectionInfo();
 
