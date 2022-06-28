@@ -15,43 +15,42 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation.Output
             var path = "C:\\Users\\Lenovo\\Desktop\\file.ppm";
             var  file = new StreamWriter(path);
             file.WriteLine("P3");
-            file.WriteLine(picture.Pixels.GetLength(0) + " " + picture.Pixels.GetLength(1));
+
+            var pixels = picture.Pixels;
+            var rows = picture.Pixels.GetLength(0);
+            var colums = picture.Pixels.GetLength(1);
+
+            file.WriteLine(rows + " " + colums);
             file.WriteLine("255");
             file.WriteLine();
-            var pixels = picture.Pixels;
-            var rows = pixels.GetUpperBound(0) + 1;
-            var colums = pixels.Length / rows;
-
+            
             for (int i = 0; i < pixels.Length; i++)
             {
                 var x = i / colums;
                 var y = i % colums;
                 var pixel = pixels[x, y];
 
-                var colorR = (int) (250 * pixel.AngleBeetwinLightAndViewRay);
-                
-                if (colorR > 250) colorR = 250;
-                if (colorR < 1) colorR = 1;
-                
-                var color = Color.FromArgb(colorR, colorR, 0,0);
-                
-                if(pixel.HasIntersection && pixel.AngleBeetwinLightAndViewRay <= 0) color = Color.Black;
-                if (pixel.AngleBeetwinLightAndViewRay >= 0 && pixel.HasShadow) color = Color.DarkGray;
-                
-                if (!pixel.HasIntersection) color = Color.White;
+                var color = GetColor(pixel);
 
                 file.WriteLine(color.R + " " + color.G + " " + color.B);
             }
             file.Flush();
             file.Close();
         }
-
-
-        private void CheckPixelForAffiliationToRange(Pixel pixel, double from, double to, Color color, ref string result)
+        
+        private Color GetColor(Pixel pixel)
         {
-            var isLargerThanFrom = pixel.AngleBeetwinLightAndViewRay >= from;
-            var isSmallerThenTo = pixel.AngleBeetwinLightAndViewRay < to;
-            if (isLargerThanFrom & isSmallerThenTo) result = color.R + " " + color.G + " " + color.B;
+            if (!pixel.HasIntersection) return Color.White;
+            if (pixel.HasIntersection && pixel.AngleBeetwinLightAndViewRay <= 0) return Color.Black;
+            if (pixel.AngleBeetwinLightAndViewRay >= 0 && pixel.HasShadow) return Color.DarkGray;
+
+            var colorR = (int)(250 * pixel.AngleBeetwinLightAndViewRay);
+            if (colorR > 250) colorR = 250;
+            if (colorR < 1) colorR = 1;
+
+            var color = Color.FromArgb(0, colorR, 0, 0);
+
+            return color;
         }
     }
 }
