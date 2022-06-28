@@ -46,9 +46,9 @@ namespace ComputerGraphicsLabs.Models.MainObjects
                     Console.WriteLine(i.ToString() + "\\" + pixels.Length.ToString());
                 }
 
-                if (intersection == default) intersection = new IntersecitonInfo(null, -1, null);
+                if (intersection == default) intersection = new IntersecitonInfo(null, -1, null, null);
                 
-                pixels[x, y] = Pixel.CreatePixelFromIntersection(intersection, Light);
+                pixels[x, y] = Pixel.CreatePixelFromIntersection(intersection, Light, VisibleObject);
             }
             
             return picture;

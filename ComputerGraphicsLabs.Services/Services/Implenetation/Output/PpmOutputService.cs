@@ -1,5 +1,6 @@
 ﻿using ComputerGraphicsLabs.Models.InfoObjects.MainObjects;
 using ComputerGraphicsLabs.Models.MainObjects;
+using ComputerGraphicsLabs.Models.Shadow;
 using ComputerGraphicsLabs.Services.Services.Abstracion;
 using System;
 using System.Drawing;
@@ -33,7 +34,10 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation.Output
                 if (colorR < 1) colorR = 1;
                 
                 var color = Color.FromArgb(colorR, colorR, 0,0);
-                if(pixel.AngleBeetwinLightAndViewRay <= 0) color = Color.Black;
+                
+                if(pixel.HasIntersection && pixel.AngleBeetwinLightAndViewRay <= 0) color = Color.Black;
+                if (pixel.AngleBeetwinLightAndViewRay >= 0 && pixel.HasShadow) color = Color.DarkGray;
+                
                 if (!pixel.HasIntersection) color = Color.White;
 
                 file.WriteLine(color.R + " " + color.G + " " + color.B);

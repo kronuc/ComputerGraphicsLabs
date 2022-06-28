@@ -1,5 +1,4 @@
 ﻿using ComputerGraphicsLabs.Models.ComputeObjects;
-using ComputerGraphicsLabs.Models.MainObjects;
 using ComputerGraphicsLabs.Models.MainObjects.InfoObjects;
 
 namespace ComputerGraphicsLabs.Models.VisibleObjects
@@ -8,7 +7,7 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
     {
         public abstract IntersecitonInfo Getintersection(Ray ray);
 
-        protected IntersecitonInfo GetEmptyIntersectionInfo() => new IntersecitonInfo(null, -1, null);
+        protected IntersecitonInfo GetEmptyIntersectionInfo() => new IntersecitonInfo(null, -1, null, this);
 
         protected Point GetPointOfInterseciton(Vector vectorToIntersecitonPoint, Ray ray)
         {

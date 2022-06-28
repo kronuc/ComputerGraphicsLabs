@@ -30,7 +30,7 @@ namespace ComputerGraphicsLabs.Services.Services.Implenetation
                 CheckPixelForAffiliationToRange(pixel, 0, 0.2, ".", ref addToResult);
 
                 if (!pixel.HasIntersection || pixel.AngleBeetwinLightAndViewRay <= 0) addToResult = " ";
-
+                if (pixel.HasShadow) addToResult = "S";
                 result += addToResult;
             }
         

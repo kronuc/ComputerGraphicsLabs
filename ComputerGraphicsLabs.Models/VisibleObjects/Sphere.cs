@@ -45,7 +45,7 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
 
             var normalWithLenghtOne = GetVectorWithLenghtOne(normal);
 
-            return new IntersecitonInfo(pointOfInterseciton, distanceToIntersection, normalWithLenghtOne);
+            return new IntersecitonInfo(pointOfInterseciton, distanceToIntersection, normalWithLenghtOne, this);
         }
     }
 

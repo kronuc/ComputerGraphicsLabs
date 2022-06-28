@@ -61,7 +61,7 @@ namespace ComputerGraphicsLabs.Models.VisibleObjects
             var distanceToIntersection = vectorToIntersecitonPoint.GetModule();
             var normalWithLenghtOne = GetVectorWithLenghtOne(NormalA);
 
-            return new IntersecitonInfo(pointOfInterseciton, distanceToIntersection, normalWithLenghtOne);
+            return new IntersecitonInfo(pointOfInterseciton, distanceToIntersection, normalWithLenghtOne, this);
         }
     }
 }
